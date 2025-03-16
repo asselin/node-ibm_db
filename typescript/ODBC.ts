@@ -53,24 +53,4 @@ export class ODBC {
 
   createConnectionSync(): ODBCConnection;
   createConnectionSync(): any {}
-
-  static GetColumnValue(): ColumnValue;
-  static GetColumnValue(): any {}
-
-  static GetRecordTuple(): RecordTuple;
-  static GetRecordTuple(): any {}
-
-  static GetRecordArray(): RecordArray;
-  static GetRecordArray(): any {}
-
-  static CallbackSQLError(): void;
-
-  static GetColumns();
-
-  static GetOutputParameter(): null | number | boolean | string;
-  static GetOutputParameter(): any {}
-
-  static GetParametersFromArray(
-    params: Array<ArrayParam | Buffer | string | null | number | boolean>
-  );
 }

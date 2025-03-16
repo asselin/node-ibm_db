@@ -5,7 +5,6 @@ import { ODBCConnection } from './ODBCConnection';
 import { ODBCResult, SQLResults } from './ODBCResult';
 import { ODBCStatement } from './ODBCStatement';
 import { Options } from './Options';
-import { SimpleQueue } from './SimpleQueue';
 import { Pool } from './Pool';
 import { FetchMode } from './attributes';
 import { DB2Error } from './DB2Error';
@@ -69,7 +68,7 @@ export interface Param {
   Length: number;
 }
 
-export type SQLParams = Array<string | number | Param>;
+export type SQLParams = Array<string | number | null | Param>;
 
 export interface SQLQuery {
   sql: string;
@@ -88,7 +87,6 @@ export type CloseOption = number & { __TYPE__: 'CloseOption' };
 
 export class Database {
   odbc: ODBC;
-  queue: SimpleQueue | any[];
   fetchMode: FetchMode | null;
   connected: boolean;
   connectTimeout: number | null;

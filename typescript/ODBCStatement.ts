@@ -1,76 +1,14 @@
 import { Param } from './Database';
 import { DB2Error } from './DB2Error';
-import { ArrayParam } from './ODBC';
 import { ODBCResult } from './ODBCResult';
-import { SimpleQueue } from './SimpleQueue';
 
 export class ODBCStatement {
-  queue: SimpleQueue;
-  bindQueue: SimpleQueue;
-
   private constructor() {
     // Internal only
   }
 
-  _execute(
-    cb: (
-      err: DB2Error | null,
-      result?: ODBCResult,
-      outParams?: Array<null | number | boolean | string> | null
-    ) => void
-  ): void;
-  _execute() {}
-
-  _executeSync(
-    params?: any[]
-  ): [ODBCResult, Array<null | number | boolean | string>] | ODBCResult | null;
-  _executeSync(): any {}
-
-  _executeNonQuery(cb: (err: DB2Error | null, res?: number) => void): void;
-  _executeNonQuery(): void {}
-
-  _executeNonQuerySync(): null | number;
-  _executeNonQuerySync(): any {}
-
-  _executeDirect(
-    sql: string,
-    cb: (err: DB2Error | null, result?: ODBCResult) => void
-  ): void;
-  _executeDirect(): any {}
-
-  _executeDirectSync(sql: string): ODBCResult | null;
-  _executeDirectSync(): any {}
-
   prepareSync(sql: string): boolean;
   prepareSync(): any {}
-
-  _prepare(
-    sql: string,
-    cb: (err: DB2Error | null, result?: true) => void
-  ): void;
-  _prepare(): any {}
-
-  _bindSync(
-    params: Array<ArrayParam | Buffer | string | null | number | boolean>
-  ): boolean;
-  _bindSync(): any {}
-
-  _bind(params: any[], cb: (err: DB2Error | null, res?: true) => void): void;
-  _bind(): any {}
-
-  _setAttrSync(attr: number, value: number | null | string): boolean;
-  _setAttrSync(): any {}
-
-  _setAttr(
-    attr: number,
-    value: number | null | string,
-    cb: (err: DB2Error | null, res?: true) => void
-  ): void;
-  _setAttr(): any {}
-
-  _close(closeOption: number, cb: (err: DB2Error | null) => void): void;
-  _close(cb: (err: DB2Error | null) => void): void;
-  _close(): any {}
 
   closeSync(closeOption: number): true;
   closeSync(): any {}
