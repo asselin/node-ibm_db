@@ -8,57 +8,57 @@
 
 **Global (ibmdb) APIs**
 
-* [.open(connectionString, [options,] callback)](#-1-ibmdb-openconnectionstring-options-callback)
-* [.openSync(connectionString)](#-2-ibmdb-opensyncconnectionstring-options)
+* [.open(connectionString [, options] [, callback])](#-1-ibmdb-openconnectionstring-options-callback)
+* [.openSync(connectionString [,options])](#-2-ibmdb-opensyncconnectionstring-options)
 * [.debug(value)](#-38-ibmdb-debugvalue)
 
 **Database APIs**
-* [.query(sqlQuery [, bindingParameters], callback)](#-3-database-querysqlquery--bindingparameters--callback)
+* [.query(sqlQuery [, bindingParameters] [, callback])](#-3-database-querysqlquery--bindingparameters--callback)
 * [.querySync(sqlQuery [, bindingParameters])](#-4-database-querysyncsqlquery--bindingparameters)
 * [.queryStream(sqlQuery [, bindingParameters])](#-5-database-querystreamsqlquery--bindingparameters)
-* [.queryResult(sqlQuery [, bindingParameters], callback)](#-6-database-queryresultsqlquery--bindingparameters--callback)
+* [.queryResult(sqlQuery, [, bindingParameters] [, callback])](#-6-database-queryresultsqlquery--bindingparameters--callback)
 * [.queryResultSync(sqlQuery [, bindingParameters])](#-7-database-queryresultsyncsqlquery--bindingparameters)
-* [.close(callback)](#-8-database-closecallback)
+* [.close([callback])](#-8-database-closecallback)
 * [.closeSync()](#-9-database-closesync)
-* [.prepare(sql, callback)](#-10-database-preparesql--callback)
+* [.prepare(sql [, callback])](#-10-database-preparesql--callback)
 * [.prepareSync(sql)](#-11-database-preparesyncsql)
-* [.beginTransaction(callback)](#-28-database-begintransactioncallback)
+* [.beginTransaction([callback])](#-28-database-begintransactioncallback)
 * [.beginTransactionSync()](#-29-database-begintransactionsync)
-* [.commitTransaction(callback)](#-30-database-committransactioncallback)
+* [.commitTransaction([callback])](#-30-database-committransactioncallback)
 * [.commitTransactionSync()](#-31-database-committransactionsync)
-* [.rollbackTransaction(callback)](#-32-database-rollbacktransactioncallback)
+* [.rollbackTransaction([callback])](#-32-database-rollbacktransactioncallback)
 * [.rollbackTransactionSync()](#-33-database-rollbacktransactionsync)
 * [.setIsolationLevel(isolationLevel)](#-34-database-setisolationlevelisolationlevel)
-* [.executeFileSync(sqlFile,[delimiter],[outputFile])](#-39-database-executefilesyncsqlfile-delimiteroutputfile)
-* [.executeFile(sqlFile,[delimiter],[outputFile])](#-40-database-executefilesqlfile-delimiter-outputfile)
-* [.setAttr(attributeName, value, callback)](#-41-database-setattrattributename-value--callback)
+* [.executeFileSync(sqlFile, [delimiter], [outputFile])](#-39-database-executefilesyncsqlfile-delimiteroutputfile)
+* [.executeFile(sqlFile, [delimiter], [outputFile])](#-40-database-executefilesqlfile-delimiter-outputfile)
+* [.setAttr(attributeName, value [, callback])](#-41-database-setattrattributename-value--callback)
 * [.setAttrSync(attributeName, value)](#-42-database-setattrsyncattributename-value)
-* [.getInfo(infoType, [infoLength], callback)](#-43-database-getinfoinfotype-infolength--callback)
+* [.getInfo(infoType, [infoLength] [, callback])](#-43-database-getinfoinfotype-infolength--callback)
 * [.getInfoSync(infoType, [infoLength])](#-44-database-getinfosyncinfotype-infolength)
-* [.getTypeInfo(dataType, callback)](#-45-database-gettypeinfodatatype--callback)
+* [.getTypeInfo(dataType [, callback])](#-45-database-gettypeinfodatatype--callback)
 * [.getTypeInfoSync(dataType)](#-46-database-gettypeinfosyncdatatype)
 * [.getFunctions(functionId, callback)](#-47-database-getfunctionsfunctionid-callback)
 * [.getFunctionsSync(functionId)](#-48-database-getfunctionssyncfunctionid)
 
 **ODBCStatement APIs**
-* [.bind(bindingParameters, callback)](#-12-odbcstatement-bindbindingparameters--callback)
+* [.bind(bindingParameters [, callback])](#-12-odbcstatement-bindbindingparameters--callback)
 * [.bindSync(bindingParameters)](#-13-odbcstatement-bindsyncbindingparameters)
-* [.execute([bindingParameters], callback)](#-14-odbcstatement-executebindingparameters--callback)
+* [.execute([bindingParameters] [, callback])](#-14-odbcstatement-executebindingparameters--callback)
 * [.executeSync([bindingParameters])](#-15-odbcstatement-executesyncbindingparameters)
-* [.executeNonQuery([bindingParameters], callback)](#-16-odbcstatement-executenonquerybindingparameters--callback)
+* [.executeNonQuery([bindingParameters] [, callback])](#-16-odbcstatement-executenonquerybindingparameters--callback)
 * [.executeNonQuerySync([bindingParameters])](#-17-odbcstatement-executenonquerysyncbindingparameters)
-* [.close(callback)](#-18-odbcstatement-closecloseoption--callback)
-* [.closeSync()](#-19-odbcstatement-closesynccloseoption)
+* [close([closeOption] [, callback])](#-18-odbcstatement-closecloseoption--callback)
+* [closeSync([closeOption])](#-19-odbcstatement-closesynccloseoption)
 
 **ODBCResult APIs**
-* [.fetch(option, callback)](#-20-odbcresult-fetchoption--callback)
-* [.fetchSync(option)](#-21-odbcresult-fetchsyncoption)
-* [.fetchAll(option, callback)](#-22-odbcresult-fetchalloption--callback)
-* [.fetchAllSync(option)](#-23-odbcresult-fetchallsyncoption)
-* [.getData(colNum, Size, callback)](#-24-odbcresult-getdatacolnum--size--callback)
-* [.getDataSync(colNum, Size)](#-25-odbcresult-getdatasynccolnum-size)
-* [.close(callback)](#-26-odbcresult-closecloseoption--callback)
-* [.closeSync()](#-27-odbcresult-closesynccloseoption)
+* [.fetch([option] [, callback])](#-20-odbcresult-fetchoption--callback)
+* [.fetchSync([option])](#-21-odbcresult-fetchsyncoption)
+* [.fetchAll([option] [, callback])](#-22-odbcresult-fetchalloption--callback)
+* [.fetchAllSync([option])](#-23-odbcresult-fetchallsyncoption)
+* [.getData([colNum] [, size] [, callback])](#-24-odbcresult-getdatacolnum--size--callback)
+* [.getDataSync(colNum, size)](#-25-odbcresult-getdatasynccolnum-size)
+* [.close([closeOption] [, callback])](#-26-odbcresult-closecloseoption--callback)
+* [.closeSync([closeOption])](#-27-odbcresult-closesynccloseoption)
 * [.getColumnNamesSync()](#-35-odbcresult-getcolumnnamessync)
 * [.getColumnMetadataSync()](#-36-odbcresult-getcolumnmetadatasync)
 * [.getSQLErrorSync()](#-37-odbcresult-getsqlerrorsync)
@@ -78,7 +78,7 @@
 ## [**CALL Statement**](#call-statement)
 
 
-### <a name="openApi"></a> 1) (ibmdb) .open(connectionString, [options,] callback)
+### <a name="openApi"></a> 1) (ibmdb) .open(connectionString [, options] [, callback])
 
 Open a connection to a database.
 
@@ -96,7 +96,7 @@ Open a connection to a database.
 * **options** - _OPTIONAL_ - Object type. Can be used to avoid multiple
     loading of native ODBC library for each call of `.open`. Also, can be used
     to pass connectTimeout value and systemNaming(true/false) for i5/OS server.
-* **callback** - `callback (err, database)`
+* **callback** - _OPTIONAL_ - `callback (err, database)`. If callback is not provided, a Promise will be returned.
 
 ```javascript
 const ibmdb = require("ibm_db")
@@ -853,13 +853,13 @@ ibmdb.open(cn,function(err, database){
 ```
 See test file [test-fetch-apis.js](https://github.com/ibmdb/node-ibm_db/blob/master/test/test-fetch-apis.js) for detail example.
 
-### <a name="getDataSyncApi"></a> 25) (ODBCResult) .getDataSync(colNum, Size)
+### <a name="getDataSyncApi"></a> 25) (ODBCResult) .getDataSync(colNum, size)
 
 Retrive data for colNum of specified size from ODBCResult object synchronously.
 
 * **colNum** - Integer - Column Number in the resultset starting from 1.
 
-* **Size** - Integer -  Size of the data being retrieved. Ignored for fixed length data.
+* **size** - Integer -  Size of the data being retrieved. Ignored for fixed length data.
 
 ```javascript
 const ibmdb = require("ibm_db")
@@ -1154,7 +1154,7 @@ ibmdb.open(cn, function (err, database) {
 });
 ```
 
-### <a name="executeFileSyncApi"></a> 39) (Database) .executeFileSync(sqlFile, [delimiter],[outputFile])
+### <a name="executeFileSyncApi"></a> 39) (Database) .executeFileSync(sqlFile, [delimiter], [outputFile])
 
 Synchronously issue multiple SQL query from the file to the database that is currently open.
 
