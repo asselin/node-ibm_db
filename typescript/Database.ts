@@ -91,9 +91,10 @@ export class Database {
   connected: boolean;
   connectTimeout: number | null;
   systemNaming?: boolean;
-  codeSet?: string | null; //BUGBUG figure out this type
-  mode?: string | null; //BUGBUG figure out this type
-  pool?: Pool | null; //BUGBUG figure out this type
+  codeSet: string | null;
+  mode: string | null;
+  pool: Pool | null;
+  connStr: string | null
   conn?: ODBCConnection;
 
   SQL_CLOSE: CloseOption;
