@@ -224,7 +224,7 @@ export class Database {
   beginTransactionSync(): any {}
 
   endTransactionSync(rollback: boolean): Database;
-  endTransactionSync(rollback: boolean): any {}
+  endTransactionSync(): any {}
 
   commitTransactionSync(): Database;
   commitTransactionSync(): any {}
@@ -291,7 +291,7 @@ export class Database {
   prepareSync(sql: string): ODBCStatement;
   prepareSync(): any {}
 
-  setIsolationLevel(isolationLevel: number): true;
+  setIsolationLevel(isolationLevel: 1 | 2 | 4 | 8 | 32): true;
   setIsolationLevel(): any {}
 
   getInfoSync(

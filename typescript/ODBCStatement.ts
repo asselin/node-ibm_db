@@ -1,4 +1,4 @@
-import { Param } from './Database';
+import { Param, SQLParams } from './Database';
 import { DB2Error } from './DB2Error';
 import { ODBCResult } from './ODBCResult';
 
@@ -14,14 +14,30 @@ export class ODBCStatement {
   closeSync(): any {}
 
   execute(
-    params: any[],
-    cb: (err: DB2Error, result: any[], outparams: any) => void
-  ): void; // TODO: type of outparams is unknown
-  execute(cb: (err: DB2Error, result: any[], outparams: any) => void): void;
-  execute(params: any[]): Promise<{ result: any[]; outparams: any }>;
+    params: SQLParams,
+    cb: (
+      err: DB2Error,
+      result?: ODBCResult,
+      outparams?: Array<null | number | boolean | string> | null
+    ) => void
+  ): void;
+  execute(
+    cb: (
+      err: DB2Error,
+      result?: ODBCResult,
+      outparams?: Array<null | number | boolean | string> | null
+    ) => void
+  ): void;
+  execute(
+    params?: SQLParams
+  ): Promise<
+    [ODBCResult, Array<null | number | boolean | string>] | ODBCResult
+  >;
   execute(): any {}
 
-  executeSync(params?: any[]): ODBCResult;
+  executeSync(
+    params?: SQLParams
+  ): [ODBCResult, Array<null | number | boolean | string>] | ODBCResult | null;
   executeSync(): any {}
 
   executeDirect(
@@ -32,26 +48,26 @@ export class ODBCStatement {
   executeDirect(): any {}
 
   executeNonQuery(
-    params: Param[],
+    params: SQLParams,
     cb: (err: DB2Error | null, res?: number) => void
   ): null;
   executeNonQuery(cb: (err: DB2Error | null, res?: number) => void): null;
-  executeNonQuery(params?: Param[]): Promise<void>;
+  executeNonQuery(params?: SQLParams): Promise<number>;
   executeNonQuery(): any {}
 
-  executeNonQuerySync(params: Param[]): null | number;
+  executeNonQuerySync(params: SQLParams): null | number;
   executeNonQuerySync(): any {}
 
   prepare(sql: string, cb: (err: DB2Error | null) => void): null;
   prepare(sql: string): Promise<true>;
   prepare(): any {}
 
-  bind(params: Param[], cb: (err: DB2Error | null) => void): void;
+  bind(params: SQLParams, cb: (err: DB2Error | null) => void): void;
   bind(cb: (err: DB2Error | null) => void): void;
-  bind(params?: Param[]): Promise<true>;
+  bind(params?: SQLParams): Promise<true>;
   bind(): any {}
 
-  bindSync(params: Param[]): boolean;
+  bindSync(params: SQLParams): boolean;
   bindSync(): any {}
 
   setAttr(

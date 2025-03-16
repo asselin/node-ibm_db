@@ -21,7 +21,7 @@ export default function (): any {}
 export function getElapsedTime(): string;
 export function getElapsedTime(): any {}
 
-export function debug(x: boolean | number): void;
+export function debug(x: boolean | 2): void;
 export function debug(): any {}
 
 export function open(
@@ -44,3 +44,17 @@ export function openSync(
   options?: Options
 ): Database;
 export function openSync(): any {}
+
+export function createDbSync(
+  dbName: string,
+  connStr: string | ConnStr,
+  options: Options
+): boolean;
+export function createDbSync(): any {}
+
+export function dropDbSync(
+  dbName: string,
+  connStr: string | ConnStr,
+  options: Options
+): boolean;
+export function dropDbSync(): any {}
