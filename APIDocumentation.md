@@ -3,86 +3,79 @@
 ## Database APIs
 
 **APIs for creating and dropping Database using node.js application**
-* [.createDbSync(dbName, connectionString, [options])](#create-and-drop-database-apis)
-* [.dropDBSync(dbName, connectionString)](#-dropdbsyncdbname-connectionstring)
+* [.createDbSync(dbName, connectionString, [options])](#-ibmdb-createdbsyncdbname-connectionstring--options)
+* [.dropDBSync(dbName, connectionString)](#-ibmdb-dropdbsyncdbname-connectionstring--options)
 
 **Global (ibmdb) APIs**
 
-* [.open(connectionString, [options,] callback)](#1-openconnectionstring-options-callback)
-* [.openSync(connectionString)](#-2-opensyncconnectionstring-options)
-* [.debug(value)](#-38-debugvalue)
+* [.open(connectionString, [options,] callback)](#-1-ibmdb-openconnectionstring-options-callback)
+* [.openSync(connectionString)](#-2-ibmdb-opensyncconnectionstring-options)
+* [.debug(value)](#-38-ibmdb-debugvalue)
 
 **Database APIs**
-* [.query(sqlQuery [, bindingParameters], callback)](#-3-querysqlquery--bindingparameters-callback)
-* [.querySync(sqlQuery [, bindingParameters])](#-4-querysyncsqlquery--bindingparameters)
-* [.queryStream(sqlQuery [, bindingParameters])](#-5-querystreamsqlquery--bindingparameters)
-* [.queryResult(sqlQuery [, bindingParameters], callback)](#-6-queryresultsqlquery--bindingparameters-callback)
-* [.queryResultSync(sqlQuery [, bindingParameters])](#-7-queryresultsyncsqlquery--bindingparameters)
-* [.close(callback)](#-8-closecallback)
-* [.closeSync()](#-9-closesync)
-* [.prepare(sql, callback)](#-10-preparesql-callback)
-* [.prepareSync(sql)](#-11-preparesyncsql)
-* [.beginTransaction(callback)](#-28-begintransactioncallback)
-* [.beginTransactionSync()](#-29-begintransactionsync)
-* [.commitTransaction(callback)](#-30-committransactioncallback)
-* [.commitTransactionSync()](#-31-committransactionsync)
-* [.rollbackTransaction(callback)](#-32-rollbacktransactioncallback)
-* [.rollbackTransactionSync()](#-33-rollbacktransactionsync)
-* [.setIsolationLevel(isolationLevel)](#-34-setisolationlevelisolationlevel)
-* [.executeFileSync(sqlFile,[delimiter],[outputFile])](#-39-executefilesyncsqlfiledelimiteroutputfile)
-* [.executeFile(sqlFile,[delimiter],[outputFile])](#-40-executefilesqlfiledelimiteroutputfile)
-* [.setAttr(attributeName, value, callback)](#-41-setattrattributename-value-callback)
-* [.setAttrSync(attributeName, value)](#-42-setattrsyncattributename-value)
-* [.getInfo(infoType, [infoLength], callback)](#-43-getinfoinfotype-infolength-callback)
-* [.getInfoSync(infoType, [infoLength])](#-44-getinfosyncinfotype-infolength)
-* [.getTypeInfo(dataType, callback)](#-45-gettypeinfodatatype-callback)
-* [.getTypeInfoSync(dataType)](#-46-gettypeinfosyncdatatype)
-* [.getFunctions(functionId, callback)](#-47-getfunctionsfunctionid-callback)
-* [.getFunctionsSync(functionId)](#-48-getfunctionssyncfunctionid)
+* [.query(sqlQuery [, bindingParameters], callback)](#-3-database-querysqlquery--bindingparameters--callback)
+* [.querySync(sqlQuery [, bindingParameters])](#-4-database-querysyncsqlquery--bindingparameters)
+* [.queryStream(sqlQuery [, bindingParameters])](#-5-database-querystreamsqlquery--bindingparameters)
+* [.queryResult(sqlQuery [, bindingParameters], callback)](#-6-database-queryresultsqlquery--bindingparameters-callback)
+* [.queryResultSync(sqlQuery [, bindingParameters])](#-7-database-queryresultsyncsqlquery--bindingparameters)
+* [.close(callback)](#-8-database-closecallback)
+* [.closeSync()](#-9-database-closesync)
+* [.prepare(sql, callback)](#-10-database-preparesql-callback)
+* [.prepareSync(sql)](#-11-database-preparesyncsql)
+* [.beginTransaction(callback)](#-28-database-begintransactioncallback)
+* [.beginTransactionSync()](#-29-database-begintransactionsync)
+* [.commitTransaction(callback)](#-30-database-committransactioncallback)
+* [.commitTransactionSync()](#-31-database-committransactionsync)
+* [.rollbackTransaction(callback)](#-32-database-rollbacktransactioncallback)
+* [.rollbackTransactionSync()](#-33-database-rollbacktransactionsync)
+* [.setIsolationLevel(isolationLevel)](#-34-database-setisolationlevelisolationlevel)
+* [.executeFileSync(sqlFile,[delimiter],[outputFile])](#-39-database-executefilesyncsqlfiledelimiteroutputfile)
+* [.executeFile(sqlFile,[delimiter],[outputFile])](#-40-database-executefilesqlfiledelimiteroutputfile)
+* [.setAttr(attributeName, value, callback)](#-41-database-setattrattributename-value-callback)
+* [.setAttrSync(attributeName, value)](#-42-database-setattrsyncattributename-value)
+* [.getInfo(infoType, [infoLength], callback)](#-43-database-getinfoinfotype-infolength-callback)
+* [.getInfoSync(infoType, [infoLength])](#-44-database-getinfosyncinfotype-infolength)
+* [.getTypeInfo(dataType, callback)](#-45-database-gettypeinfodatatype-callback)
+* [.getTypeInfoSync(dataType)](#-46-database-gettypeinfosyncdatatype)
+* [.getFunctions(functionId, callback)](#-47-database-getfunctionsfunctionid-callback)
+* [.getFunctionsSync(functionId)](#-48-database-getfunctionssyncfunctionid)
 
 **ODBCStatement APIs**
-* [.bind(bindingParameters, callback)](#-12-bindbindingparameters-callback)
-* [.bindSync(bindingParameters)](#-13-bindsyncbindingparameters)
-* [.execute([bindingParameters], callback)](#-14-executebindingparameters-callback)
-* [.executeSync([bindingParameters])](#-15-executesyncbindingparameters)
-* [.executeNonQuery([bindingParameters], callback)](#-16-executenonquerybindingparameters-callback)
-* [.executeNonQuerySync([bindingParameters])](#-17-executenonquerysyncbindingparameters)
-* [stmt.close(callback)](#-18-stmtclosecallback)
-* [stmt.closeSync()](#-19-stmtclosesync)
+* [.bind(bindingParameters, callback)](#-12-odbcstatement-bindbindingparameters--callback)
+* [.bindSync(bindingParameters)](#-13-odbcstatement-bindsyncbindingparameters)
+* [.execute([bindingParameters], callback)](#-14-odbcstatement-executebindingparameters-callback)
+* [.executeSync([bindingParameters])](#-15-odbcstatement-executesyncbindingparameters)
+* [.executeNonQuery([bindingParameters], callback)](#-16-odbcstatement-executenonquerybindingparameters-callback)
+* [.executeNonQuerySync([bindingParameters])](#-17-odbcstatement-executenonquerysyncbindingparameters)
+* [stmt.close(callback)](#-18-odbcstatement-stmtclosecallback)
+* [stmt.closeSync()](#-19-odbcstatement-stmtclosesync)
 
 **ODBCResult APIs**
-* [.fetch(option, callback)](#-20-fetchoption-callback)
-* [.fetchSync(option)](#-21-fetchsyncoption)
-* [.fetchAll(option, callback)](#-22-fetchalloption-callback)
-* [.fetchAllSync(option)](#-23-fetchallsyncoption)
-* [.getData(colNum, Size, callback)](#-24-getdatacolnum-size-callback)
-* [.getDataSync(colNum, Size)](#-25-getdatasynccolnum-size)
-* [result.close(callback)](#-26-resultclosecallback)
-* [result.closeSync()](#-27-resultclosesync)
-* [.getColumnNamesSync()](#-35-getcolumnnamessync)
-* [.getColumnMetadataSync()](#-36-getcolumnmetadatasync)
-* [.getSQLErrorSync()](#-37-getsqlerrorsync)
+* [.fetch(option, callback)](#-20-odbcresult-fetchoption-callback)
+* [.fetchSync(option)](#-21-odbcresult-fetchsyncoption)
+* [.fetchAll(option, callback)](#-22-odbcresult-fetchalloption-callback)
+* [.fetchAllSync(option)](#-23-odbcresult-fetchallsyncoption)
+* [.getData(colNum, Size, callback)](#-24-odbcresult-getdatacolnum-size-callback)
+* [.getDataSync(colNum, Size)](#-25-odbcresult-getdatasynccolnum-size)
+* [result.close(callback)](#-26-odbcresult-resultclosecallback)
+* [result.closeSync()](#-27-odbcresult-resultclosesync)
+* [.getColumnNamesSync()](#-35-odbcresult-getcolumnnamessync)
+* [.getColumnMetadataSync()](#-36-odbcresult-getcolumnmetadatasync)
+* [.getSQLErrorSync()](#-37-odbcresult-getsqlerrorsync)
 
 
 [**Connection Pooling APIs**](#connection-pooling-apis)
-* [.open(connectionString [, callback])](#openPoolApi)
-* [.openSync(connectionString)]()
-* [.close([callback])]()
-* [.closeSync()]()
-* [.init(N, connStr)]()
-* [.initAsync(N, connStr [, callback])]()
-* [.setMaxPoolSize(N)]()
+* [.open(connectionString [, callback])](#-1-pool-openconnectionstring--callback)
+* [.openSync(connectionString)](#-2-pool-opensyncconnectionstring)
+* [.close([callback])](#-3-pool-closecallback)
+* [.closeSync()](#-4-pool-closesync)
+* [.init(N, connStr)](#-5-pool-initn-connstr)
+* [.initAsync(N, connStr [, callback])](#-6-pool-initasyncn-connstr--callback)
+* [.setMaxPoolSize(N)](#-7-pool-setmaxpoolsizen)
 
+## [**bindingParameters**](#bindingparameters)
 
-
-
-
-
-
-
-
-*   [**bindingParameters**](#bindingparameters)
-*   [**CALL Statement**](#call-statement)
+## [**CALL Statement**](#call-statement)
 
 
 ### <a name="openApi"></a> 1) (ibmdb) .open(connectionString, [options,] callback)
@@ -1458,14 +1451,6 @@ the next time you call `Pool.open()` for the same connection string.
 
 For applications using multiple connections simultaneously, it is recommended to
 use Pool.open instead of [ibmdb.open](#1-openconnectionstring-options-callback).
-
-1.  [.open(connectionString, callback)](#-1-openconnectionstring-callback)
-2.  [.openSync(connectionString)](#-2-opensyncconnectionstring)
-3.  [.close(callback)](#-3-closecallback)
-4.  [.closeSync()](#-4-closesync)
-5.  [.init(N, connStr)](#-5-initn-connstr)
-6.  [.initAsync(N, connStr, callback)](#-6-initasyncn-connstr-callback)
-7.  [.setMaxPoolSize(N)](#-7-setmaxpoolsizen)
 
 ### <a name="openPoolApi"></a> 1) (Pool) .open(connectionString [, callback])
 
