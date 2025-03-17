@@ -1,4 +1,4 @@
-import { SQLParams, SQLQuery } from './Database';
+import { SQLParam, SQLQuery } from './Database';
 import { DB2Error } from './DB2Error';
 import { ODBCResult, SQLResults } from './ODBCResult';
 import { ODBCStatement } from './ODBCStatement';
@@ -45,7 +45,7 @@ export class ODBCConnection {
 
   query(
     query: string,
-    params: SQLParams,
+    params: SQLParam[],
     cb: (
       err: null | DB2Error,
       res: null | ODBCResult,
@@ -64,7 +64,7 @@ export class ODBCConnection {
 
   querySync(
     query: string,
-    params?: SQLParams
+    params?: SQLParam[]
   ): ODBCResult | [ODBCResult | null, SQLResults | undefined];
   querySync(): any {}
 

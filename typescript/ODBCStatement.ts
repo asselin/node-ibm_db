@@ -1,4 +1,4 @@
-import { Param, SQLParams } from './Database';
+import { SQLParam } from './Database';
 import { DB2Error } from './DB2Error';
 import { ODBCResult } from './ODBCResult';
 
@@ -14,7 +14,7 @@ export class ODBCStatement {
   closeSync(): any {}
 
   execute(
-    params: SQLParams,
+    params: SQLParam[],
     cb: (
       err: DB2Error,
       result?: ODBCResult,
@@ -29,14 +29,14 @@ export class ODBCStatement {
     ) => void
   ): void;
   execute(
-    params?: SQLParams
+    params?: SQLParam[]
   ): Promise<
     [ODBCResult, Array<null | number | boolean | string>] | ODBCResult
   >;
   execute(): any {}
 
   executeSync(
-    params?: SQLParams
+    params?: SQLParam[]
   ): [ODBCResult, Array<null | number | boolean | string>] | ODBCResult | null;
   executeSync(): any {}
 
@@ -48,26 +48,26 @@ export class ODBCStatement {
   executeDirect(): any {}
 
   executeNonQuery(
-    params: SQLParams,
+    params: SQLParam[],
     cb: (err: DB2Error | null, res?: number) => void
   ): null;
   executeNonQuery(cb: (err: DB2Error | null, res?: number) => void): null;
-  executeNonQuery(params?: SQLParams): Promise<number>;
+  executeNonQuery(params?: SQLParam[]): Promise<number>;
   executeNonQuery(): any {}
 
-  executeNonQuerySync(params: SQLParams): null | number;
+  executeNonQuerySync(params: SQLParam[]): null | number;
   executeNonQuerySync(): any {}
 
   prepare(sql: string, cb: (err: DB2Error | null) => void): null;
   prepare(sql: string): Promise<true>;
   prepare(): any {}
 
-  bind(params: SQLParams, cb: (err: DB2Error | null) => void): void;
+  bind(params: SQLParam[], cb: (err: DB2Error | null) => void): void;
   bind(cb: (err: DB2Error | null) => void): void;
-  bind(params?: SQLParams): Promise<true>;
+  bind(params?: SQLParam[]): Promise<true>;
   bind(): any {}
 
-  bindSync(params: SQLParams): boolean;
+  bindSync(params: SQLParam[]): boolean;
   bindSync(): any {}
 
   setAttr(

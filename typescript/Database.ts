@@ -15,7 +15,7 @@ export interface SQLCA {
   sqlcode: number;
 }
 
-export interface Param {
+export interface SQLParamObject {
   ParamType:
     | 'INPUT'
     | 'OUTPUT'
@@ -68,11 +68,11 @@ export interface Param {
   Length: number;
 }
 
-export type SQLParams = Array<string | number | null | Param>;
+export type SQLParam = string | number | null | SQLParamObject;
 
 export interface SQLQuery {
   sql: string;
-  params?: SQLParams;
+  params?: SQLParam[];
   noResults?: boolean;
   ArraySize?: number;
 }
@@ -94,7 +94,7 @@ export class Database {
   codeSet: string | null;
   mode: string | null;
   pool: Pool | null;
-  connStr: string | null
+  connStr: string | null;
   conn?: ODBCConnection;
 
   SQL_CLOSE: CloseOption;
@@ -127,7 +127,7 @@ export class Database {
 
   query(
     query: string,
-    params: SQLParams,
+    params: SQLParam[],
     cb: (err: Error, outputParam: SQLResults, sqlca: SQLCA) => void
   ): false;
   query(
@@ -139,7 +139,7 @@ export class Database {
 
   queryResult(
     query: string | SQLQuery,
-    params: SQLParams,
+    params: SQLParam[],
     cb: (err: Error, res?: null | ODBCResult, outputParam?: SQLResults) => void
   ): false;
   queryResult(
@@ -148,19 +148,19 @@ export class Database {
   ): false;
   queryResult(
     query: string | SQLQuery,
-    params?: SQLParams
+    params?: SQLParam[]
   ): Promise<[result: null | ODBCResult, outparams: SQLResults]>;
   queryResult(): any {}
 
   queryResultSync(
     query: string | SQLQuery,
-    params?: SQLParams
+    params?: SQLParam[]
   ): ODBCResult | [ODBCResult | null, SQLResults];
   queryResultSync(): any {}
 
   querySync(
     query: string | SQLQuery,
-    params?: SQLParams
+    params?: SQLParam[]
   ): SQLResults | undefined | null;
   querySync(): any {}
 
@@ -195,7 +195,7 @@ export class Database {
   executeFileSync(): any {}
 
   // Emits a stream of RecordTupleOrArray
-  queryStream(sql: string | SQLQuery, params?: SQLParams): Readable;
+  queryStream(sql: string | SQLQuery, params?: SQLParam[]): Readable;
   queryStream(): any {}
 
   // Emits a stream of RecordTupleOrArray for each result
